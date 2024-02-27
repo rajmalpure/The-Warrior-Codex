@@ -4,6 +4,8 @@ const port = process.env.PUBLIC_PORT || 3000;
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const connection = process.env.URI;
+
+const routes = require('./route');
     
 let connectionStatus = 'disconnected';
 
@@ -31,12 +33,15 @@ app.get('/ping', (req, res) => {
   res.send("Hello Raj");
 });
 
+app.use('/', routes);
+
 if (require.main === module) {
-  app.listen(port, () => {
+  app.listen(port, () => { 
     startDatabase()
     console.log(`🚀 server running on PORT: ${port}`);
   });
 }
 
 module.exports = app;
+
 
