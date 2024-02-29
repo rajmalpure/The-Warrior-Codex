@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const connection = process.env.URI;
 
-const routes = require('./route');
+const routes = require('./routes');
     
 let connectionStatus = 'disconnected';
 
