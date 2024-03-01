@@ -8,5 +8,5 @@
 
  Deployed link :- https://list-of-warrriors-rajmalpure.onrender.com/ping
 
-# React + Vite
+* React + Vite
 
