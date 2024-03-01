@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 // Define CRUD routes and handlers
 router.get('/get', (req, res) => {
     res.send("Read");
