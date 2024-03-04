@@ -7,6 +7,10 @@ function Home() {
       
       <div className="nav">
        <h1>LIST OF WARRIORS</h1>
+        <input className="search-bar"
+            type="text"
+            placeholder="  Enter the warrier name"
+          />
       </div>
 
       <div className="content">
