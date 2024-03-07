@@ -1,12 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const  war = require('./schema')
 
+router.use(express.json())
 
 // Define CRUD routes and handlers
-router.get('/get', (req, res) => {
-    res.send("Read");
-  // Handler for GET method (Read)
+router.get('/get', async (req, res) => {
+  try {
+      const sword = await war.find(); 
+      res.json(sword); 
+  } catch (err) {
+      console.error('Error in GET request:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
 });
+
 
 router.post('/post', (req, res) => {
     res.send("Create");
@@ -22,5 +30,15 @@ router.delete('/delete', (req, res) => {
     res.send("Delete");
   // Handler for DELETE method (Delete)
 });
+
+
+// router.get('/warrior', async(req,res)=>{
+  // const test = await war.find()
+  // res.json (test)
+  // })
+  // try{
+  // }catch(err) {
+  // console.log(err)
+  // }
 
 module.exports = router;

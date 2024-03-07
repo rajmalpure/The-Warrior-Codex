@@ -25,9 +25,21 @@ h1{
     border-radius: 8px;
 } 
 
+.photo{
+    position: absolute;
+    top: 280px;
+    left: 300px;
+
+}
+
+img{
+    width: 250px;
+    height: 300px;
+}
+
 .content{
     background-color: rgb(224, 190, 145);
-    margin-left: 400px;
+    margin-left: 600px;
     margin-top: 150px;
     height: 300px;
     width: 570px;

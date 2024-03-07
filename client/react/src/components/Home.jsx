@@ -6,11 +6,16 @@ function Home() {
       
       
       <div className="nav">
-       <h1>LIST OF WARRIORS</h1>
+        <h1>LIST OF WARRIORS</h1>
+
         <input className="search-bar"
             type="text"
             placeholder="  Enter the warrier name"
           />
+      </div>
+
+      <div className="photo">
+        <img src="https://rukminim2.flixcart.com/image/850/1000/knoxnrk0/painting/7/j/v/12-dd058-dbrush-original-imag2bghcgd4kxwg.jpeg?q=20&crop=false" alt="" />
       </div>
 
       <div className="content">

@@ -1,11 +1,14 @@
 const express = require('express');
 const app = express();
-const port = process.env.PUBLIC_PORT || 3000;
+const port =  4001;
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const connection = process.env.URI;
 
 const routes = require('./routes');
+
+var cors = require('cors')
+app.use(cors())
     
 let connectionStatus = 'disconnected';
 
