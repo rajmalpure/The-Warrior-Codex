@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const connection = process.env.URI;
 
-const routes = require('./routes');
+const routes = require('./routes'); 
 
 var cors = require('cors')
 app.use(cors())

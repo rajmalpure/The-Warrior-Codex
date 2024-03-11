@@ -1,7 +1,37 @@
-import React from 'react';
-import './Home.css'
+import React, { useState, useEffect } from 'react';
+import './Home.css';
+import axios from 'axios';
+
 function Home() {
+
+  const [warriorData, setWarriorData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://list-of-warrriors.onrender.com/get');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setWarriorData(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
   return (
+    
     <div className="home-content">
       
       
@@ -14,19 +44,26 @@ function Home() {
           />
       </div>
 
-      <div className="photo">
-        <img src="https://rukminim2.flixcart.com/image/850/1000/knoxnrk0/painting/7/j/v/12-dd058-dbrush-original-imag2bghcgd4kxwg.jpeg?q=20&crop=false" alt="" />
-      </div>
+      <div className="container">
+        {warriorData.map(warrior => (
+            <div className="card">
+              <div className="image">
+                <img src={warrior.Image} alt="" />
+              </div>
+              <div className="info">
+                <h2><strong className='f'>{warrior.Warrior}</strong></h2>
+                <ul>
+                <li>Birth year: {warrior.BirthYear}</li>
+                <li>Death year: {warrior.DeathYear}</li>
+                <li>State: {warrior.State}</li>
+                <li>Famous battle: {warrior.FamousBattle}</li>
+                </ul>
 
-      <div className="content">
-       <h2>Chhatrapati Shivaji Maharaj</h2>
-       <ul>
-        <li>Birth year - 1630</li>
-        <li>Death year- 1680</li>
-        <li>State -Maharashtra</li>
-        <li>Famous battle - Battle of Pratapgad</li>
-       </ul>
-     
+            
+              </div>
+            </div>
+         
+        ))}
       </div>
 
     </div>
