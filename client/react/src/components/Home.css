@@ -1,64 +1,71 @@
-body{
+.home-content {
     background: url("https://previews.123rf.com/images/frenta/frenta1210/frenta121000113/16075126-background-with-american-indian-traditional-patterns.jpg");
     background-size: 1400px;
-}
-
-.nav{
-    background-color: rgb(237, 203, 169);
+  }
+  
+  .nav {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
     height: 100px;
-}
-
-h1{
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 50px;
-    padding-left: 300px;
-    padding-top: 20px;
-}
-
-.search-bar {
-    position: absolute;
-    top: 68px;
-    left: 900px;
+    font-size: 20px;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  .search-bar {
+    padding: 10px;
     width: 300px;
-    height: 33px;
-    border: 3px solid #cccccc;
-    border-radius: 8px;
-} 
-
-.photo{
-    position: absolute;
-    top: 280px;
-    left: 300px;
-
-}
-
-img{
+    margin-top: 20px;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .card {
+    background-color: rgb(224, 190, 145);
+    width: 260px;
+    margin: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  img {
     width: 250px;
     height: 300px;
-}
-
-.content{
-    background-color: rgb(224, 190, 145);
-    margin-left: 600px;
-    margin-top: 150px;
-    height: 300px;
-    width: 570px;
-}
-
-h2{
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  
+  .info {
+    padding: 10px;
+  }
+  
+  h2 {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    color: rgb(1, 7, 12);
-    margin-left: 40px;
-    font-size: 40px;
-}
-
-ul{
+    margin: 0;
+    font-size: 25px;
+    color: rgb(12, 75, 193);
+  }
+  
+  ul {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    color: rgb(30, 8, 101);
-    margin-left: 40px;
-    font-size: 23px;
-}
-
-li{
-    margin-top: 15px;
-}
+    list-style-type: none;
+    padding: 0;
+    font-size: 15px;
+    font-style: italic;
+    font-weight:500;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+ 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const  war = require('./schema')
 
-router.use(express.json())
+router.use(express.json()) 
 
 // Define CRUD routes and handlers
 router.get('/get', async (req, res) => {
