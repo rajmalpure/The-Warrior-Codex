@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
 
@@ -43,6 +44,13 @@ function Home() {
             placeholder="  Enter the warrier name"
           />
       </div>
+
+      <div className='form'>
+          <Link to="/form">
+          <button className='form-btn'>Add Entity</button>
+          
+          </Link>
+        </div>
 
       <div className="container">
         {warriorData.map(warrior => (

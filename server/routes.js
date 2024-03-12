@@ -32,13 +32,14 @@ router.delete('/delete', (req, res) => {
 });
 
 
-// router.get('/warrior', async(req,res)=>{
-  // const test = await war.find()
-  // res.json (test)
-  // })
-  // try{
-  // }catch(err) {
-  // console.log(err)
-  // }
+router.post('/new', async (req, res) => {
+  try {
+      const newData = war.create(req.body);
+      res.send(newData);
+  } catch (error) {
+      console.error(error);
+      res.send('Error');
+  }
+});
 
 module.exports = router;
