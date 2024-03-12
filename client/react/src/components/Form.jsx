@@ -22,7 +22,7 @@ function Form() {
       const handleSubmit = async (event) => {
         event.preventDefault(); // Prevents the default form submission behavior
     
-        axios.post('https://list-of-warrriors.onrender.com/get', formData)
+        axios.post('https://list-of-warrriors.onrender.com/add', formData)
             .then(() => {
                 navigate("/");
             })
@@ -108,7 +108,7 @@ function Form() {
             </label>
             <br/>
 
-            <button className='submit'>
+            <button className='submit' onClick={handleSubmit}>
                 Submit
             </button>
         </form>

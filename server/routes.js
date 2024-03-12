@@ -32,13 +32,13 @@ router.delete('/delete', (req, res) => {
 });
 
 
-router.post('/new', async (req, res) => {
+router.post('/add', async (req, res) => {
   try {
       const newData = war.create(req.body);
       res.send(newData);
   } catch (error) {
       console.error(error);
-      res.send('Error');
+      res.send('Error');  
   }
 });
 
