@@ -1,6 +1,8 @@
 .home-content {
     background: url("https://previews.123rf.com/images/frenta/frenta1210/frenta121000113/16075126-background-with-american-indian-traditional-patterns.jpg");
-    background-size: 1400px;
+    background-size: 100vh;
+    z-index: -1;
+    overflow-y: scroll;
   }
   
   .nav {
@@ -20,6 +22,18 @@
     padding: 10px;
     width: 300px;
     margin-top: 20px;
+    margin-left: 450px;
+  }
+
+  .form-btn{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 400px;
+
   }
   
   .container {

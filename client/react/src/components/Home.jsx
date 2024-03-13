@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './Home.css';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "./Home.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Home() {
-
-  const [warriorData, setWarriorData] = useState(null);
+  const [warriorData, setWarriorData] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://list-of-warrriors.onrender.com/get');
+        const response = await fetch(
+          "https://list-of-warrriors.onrender.com/get"
+        );
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
         setWarriorData(data);
@@ -32,50 +33,43 @@ function Home() {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    
     <div className="home-content">
-      
-      
+
       <div className="nav">
         <h1>LIST OF WARRIORS</h1>
+        <input
+          className="search-bar"
+          type="text"
+          placeholder="  Enter the warrier name"
+        />
 
-        <input className="search-bar"
-            type="text"
-            placeholder="  Enter the warrier name"
-          />
+          <Link to="/form">
+            <button className="form-btn">Add Entity</button>
+          </Link> 
+       
       </div>
 
-      <div className='form'>
-          <Link to="/form">
-          <button className='form-btn'>Add Entity</button>
-          
-          </Link>
-        </div>
-
       <div className="container">
-        {warriorData.map(warrior => (
-            <div className="card">
-              <div className="image">
-                <img src={warrior.Image} alt="" />
-              </div>
-              <div className="info">
-                <h2><strong className='f'>{warrior.Warrior}</strong></h2>
-                <ul>
+        {warriorData.map((warrior) => (
+          <div className="card">
+            <div className="image">
+              <img src={warrior.Image} alt="" />
+            </div>
+            <div className="info">
+              <h2>
+                <strong className="f">{warrior.Warrior}</strong>
+              </h2>
+              <ul>
                 <li>Birth year: {warrior.BirthYear}</li>
                 <li>Death year: {warrior.DeathYear}</li>
                 <li>State: {warrior.State}</li>
                 <li>Famous battle: {warrior.FamousBattle}</li>
-                </ul>
-
-            
-              </div>
+              </ul>
             </div>
-         
+          </div>
         ))}
       </div>
-
     </div>
-    
   );
 }
 

@@ -20,11 +20,13 @@ function Form() {
       
 
       const handleSubmit = async (event) => {
+        console.log("working")
         event.preventDefault(); // Prevents the default form submission behavior
     
-        axios.post('https://list-of-warrriors.onrender.com/add', formData)
-            .then(() => {
-                navigate("/");
+        const res = await axios.post('https://list-of-warrriors.onrender.com/add', formData)
+            .then(res => {
+                console.log(res)
+                navigate('/')
             })
             .catch((error) => {
                 console.error(error);
@@ -43,7 +45,7 @@ function Form() {
   return (
     <div className='container'>
     <div className='content'>
-        <form onSubmit={handleSubmit}>
+        <form>
             <label> 
                 Warrior :
                 <br /> 
@@ -80,8 +82,8 @@ function Form() {
                 State : 
                 <br />
                 <input
-                type='String'
-                name=' State'
+                type='text'
+                name='State'
                 onChange={handleChange}
                 />
             </label>
@@ -102,13 +104,13 @@ function Form() {
                 <br />
                 <input
                 type='text'
-                name='Img'
+                name='Image'
                 onChange={handleChange}
                 />
             </label>
             <br/>
 
-            <button className='submit' onClick={handleSubmit}>
+            <button className='submit' onClick={()=> handleSubmit(event)}>
                 Submit
             </button>
         </form>
