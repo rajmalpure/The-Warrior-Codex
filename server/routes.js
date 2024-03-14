@@ -44,7 +44,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/get/:id', async (req,res) => {
   const _id = req.params.id
-  userwar.findById({_id})
+  war.findById({_id})
   .then(users => res.json(users))
   .catch(err => console.log(err))
 })
