@@ -16,20 +16,20 @@ router.get('/get', async (req, res) => {
 });
 
 
-router.post('/post', (req, res) => {
-    res.send("Create");
-  // Handler for POST method (Create)
-});
+// router.post('/post', (req, res) => {
+//     res.send("Create");
+//   // Handler for POST method (Create)
+// });
 
-router.put('/put', (req, res) => {
-    res.send("Update");
-  // Handler for PUT method (Update)
-});
+// router.put('/put', (req, res) => {
+//     res.send("Update");
+//   // Handler for PUT method (Update)
+// });
 
-router.delete('/delete', (req, res) => {
-    res.send("Delete");
-  // Handler for DELETE method (Delete)
-});
+// router.delete('/delete', (req, res) => {
+//     res.send("Delete");
+//   // Handler for DELETE method (Delete)
+// });
 
 
 router.post('/add', async (req, res) => {
@@ -51,7 +51,7 @@ router.get('/get/:id', async (req,res) => {
 
 router.put('/update/:id', async (req, res) => {
   try {
-      const updatedData = await Model.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { new: true });
       if (!updatedData) {
           return res.status(404).json({ error: 'Data not found' });
       }
@@ -65,7 +65,7 @@ router.put('/update/:id', async (req, res) => {
 
 router.delete('/delete/:id', async (req, res) => {
   try {
-      const deletedData = await Model.findByIdAndDelete(req.params.id); 
+      const deletedData = await war.findByIdAndDelete(req.params.id); 
       if (!deletedData) {
           return res.status(404).json({ error: 'Data not found' });
       }
