@@ -3,6 +3,8 @@ import "./Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+const API_URI = `https://list-of-warrriors.onrender.com/get`;
+
 function Home() {
   const [warriorData, setWarriorData] = useState("");
   const [loading, setLoading] = useState(true);
@@ -31,6 +33,21 @@ function Home() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
+
+ 
+
+  const deleteItem = async (id) => {
+    try {
+      await axios.delete(`https://list-of-warrriors.onrender.com/delete/${id}`);
+      
+      // Update the state after deletion
+      setWarriorData(prevState => prevState.filter(item => item._id !== id));
+    } catch (error) {
+      console.error("Error deleting data:", error);
+      setError("Error deleting data. Please try again.");
+    }
+  };
+  
 
   return (
     <div className="home-content">
@@ -65,6 +82,15 @@ function Home() {
                 <li>State: {warrior.State}</li>
                 <li>Famous battle: {warrior.FamousBattle}</li>
               </ul>
+
+              <div className="btns">
+                 
+                  <Link to={`/update`}>
+                    <button className='update'>Update</button>
+                  </Link>
+                  <button className='delete' onClick={() => deleteItem(warrior._id)}>Delete</button>
+              </div>
+
             </div>
           </div>
         ))}
