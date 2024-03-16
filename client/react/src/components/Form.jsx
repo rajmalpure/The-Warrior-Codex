@@ -21,7 +21,7 @@ function Form() {
 
       const handleSubmit = async (event) => {
         console.log("working")
-        event.preventDefault(); // Prevents the default form submission behavior
+        event.preventDefault(); 
     
         const res = await axios.post('https://list-of-warrriors.onrender.com/add', formData)
             .then(res => {
