@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './Form.css'; // Assuming the CSS path is correct
+import './Form.css'; 
 import axios from 'axios';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 
 function UpdateForm() {
     const navigate = useNavigate();
-    const { id } = useParams(); // To fetch the specific entity's ID
+    const { id } = useParams(); 
 
     const [formData, setFormData] = useState({
         Warrior : '',
@@ -16,9 +16,8 @@ function UpdateForm() {
         Image : ''
     });
 
-    // Fetch the existing data for editing
     useEffect(() => {
-        if(id) { // Ensure there is an id to fetch data for
+        if(id) {  
             axios.get(`https://list-of-warrriors.onrender.com/get/${id}`)
                 .then((response) => {
                     setFormData({
@@ -34,7 +33,7 @@ function UpdateForm() {
                     console.error(error);
                 });
         }
-    }, [id]); // Dependency array ensures useEffect runs when id changes
+    }, [id]); 
 
     const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
@@ -48,7 +47,7 @@ function UpdateForm() {
         event.preventDefault();
         axios.put(`https://list-of-warrriors.onrender.com/update/${id}`, formData)
             .then(() => {
-                navigate('/'); // Adjust the navigate path as per your application's routing
+                navigate('/'); 
                 console.log(formData)
             })
             .catch((error) => {
@@ -59,7 +58,7 @@ function UpdateForm() {
     return (
       <div className='container'>
        <div className='content'>
-        <form>
+        <form onSubmit={handleSubmit}>
             <label> 
                 Warrior :
                 <br /> 

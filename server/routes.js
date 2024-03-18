@@ -51,7 +51,7 @@ router.get('/get/:id', async (req,res) => {
 
 router.put('/update/:id', async (req, res) => {
   try {
-      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { add: true });
       if (!updatedData) {
           return res.status(404).json({ error: 'Data not found' });
       }
