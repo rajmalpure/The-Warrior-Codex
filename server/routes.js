@@ -25,14 +25,7 @@ const newSchema = Joi.object({
   Image: Joi.string().required()
 });
 
-const updateSchema = Joi.object({
-  Warrior: Joi.string(),
-  BirthYear: Joi.number(),
-  DeathYear: Joi.number(),
-  State: Joi.string(),
-  FamousBattle: Joi.string(),
-  Image: Joi.string(),
-});
+
 
 
 // router.post('/post', (req, res) => {
@@ -52,9 +45,14 @@ const updateSchema = Joi.object({
 
 
 router.post('/add', async (req, res) => {
+
   try {
+      const { error } = newSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+        }
       const newData = war.create(req.body);
-      res.send(newData);
+      res.send(" successful");
   } catch (error) {
       console.error(error);
       res.send('Error');  
@@ -70,6 +68,10 @@ router.get('/get/:id', async (req,res) => {
 
 router.put('/update/:id', async (req, res) => {
   try {
+      const { error } = newSchema.validate(req.body);
+        if (error) {
+            return res.status(400).json({ error: error.details[0].message });
+      }
       const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { add: true });
       if (!updatedData) {
           return res.status(404).json({ error: 'Data not found' });
