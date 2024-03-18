@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const  war = require('./schema')
+const  war = require('./schema');
+const Joi = require("joi")
 
 router.use(express.json()) 
 
@@ -13,6 +14,24 @@ router.get('/get', async (req, res) => {
       console.error('Error in GET request:', err);
       res.status(500).json({ error: 'Internal Server Error' });
   }
+});
+
+const newSchema = Joi.object({
+  Warrior: Joi.string().required(),
+  BirthYear: Joi.number().required(),
+  DeathYear: Joi.number().required(),
+  State: Joi.string().required(),
+  FamousBattle: Joi.string().required(),
+  Image: Joi.string().required()
+});
+
+const updateSchema = Joi.object({
+  Warrior: Joi.string(),
+  BirthYear: Joi.number(),
+  DeathYear: Joi.number(),
+  State: Joi.string(),
+  FamousBattle: Joi.string(),
+  Image: Joi.string(),
 });
 
 
