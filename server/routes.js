@@ -72,7 +72,7 @@ router.put('/update/:id', async (req, res) => {
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
       }
-      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { add: true });
+      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, );
       if (!updatedData) {
           return res.status(404).json({ error: 'Data not found' });
       }
