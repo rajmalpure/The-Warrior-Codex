@@ -14,14 +14,6 @@ const newSchema = Joi.object({
   Image: Joi.string().required()
 });
 
-const updateDataSchema = Joi.object({
-  Warrior: Joi.string().required(),
-  BirthYear: Joi.number().required(),
-  DeathYear: Joi.number().required(),
-  State: Joi.string().required(),
-  FamousBattle: Joi.string().required(),
-  Image: Joi.string().required()
-});
 
 
 
@@ -76,7 +68,7 @@ router.get('/get/:id', async (req,res) => {
 
 router.put('/update/:id', async (req, res) => {
   try {
-      const { error } = updateDataSchema.validate(req.body);
+      const { error } = newSchema.validate(req.body);
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
       }
