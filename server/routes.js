@@ -5,18 +5,16 @@ const Joi = require("joi")
 
 router.use(express.json()) 
 
-// Define CRUD routes and handlers
-router.get('/get', async (req, res) => {
-  try {
-      const sword = await war.find(); 
-      res.json(sword); 
-  } catch (err) {
-      console.error('Error in GET request:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-  }
+const newSchema = Joi.object({
+  Warrior: Joi.string().required(),
+  BirthYear: Joi.number().required(),
+  DeathYear: Joi.number().required(),
+  State: Joi.string().required(),
+  FamousBattle: Joi.string().required(),
+  Image: Joi.string().required()
 });
 
-const newSchema = Joi.object({
+const updateDataSchema = Joi.object({
   Warrior: Joi.string().required(),
   BirthYear: Joi.number().required(),
   DeathYear: Joi.number().required(),
@@ -27,6 +25,16 @@ const newSchema = Joi.object({
 
 
 
+// Define CRUD routes and handlers
+router.get('/get', async (req, res) => {
+  try {
+      const sword = await war.find(); 
+      res.json(sword); 
+  } catch (err) {
+      console.error('Error in GET request:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 // router.post('/post', (req, res) => {
 //     res.send("Create");
@@ -68,7 +76,7 @@ router.get('/get/:id', async (req,res) => {
 
 router.put('/update/:id', async (req, res) => {
   try {
-      const { error } = newSchema.validate(req.body);
+      const { error } = updateDataSchema.validate(req.body);
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
       }
