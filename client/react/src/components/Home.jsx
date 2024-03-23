@@ -9,6 +9,7 @@ function Home() {
   const [warriorData, setWarriorData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,12 @@ function Home() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Check login status
+    const loginStatus = sessionStorage.getItem('login');
+    setIsLoggedIn(!!loginStatus);
+  }, []);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -45,17 +52,49 @@ function Home() {
 
   return (
     <div className="home-content">
+
+      
       <div className="nav">
+
+      <div className='form'>
+        {isLoggedIn ? (
+          <>
+            
+
+            <button className='login' onClick={() => {
+              sessionStorage.removeItem('login');
+              setIsLoggedIn(false);
+            }}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/Login">
+              <button className='login'>Login</button>
+            </Link>
+            <Link to="/Sign-up">
+              <button className='signup'>Signup</button>
+            </Link>
+          </>
+        )}
+      </div>
+
+      {error && <p className="error-message">{error}</p>}
+
         <h1>LIST OF WARRIORS</h1>
         <input
           className="search-bar"
           type="text"
           placeholder="  Enter the warrior name"
         />
+
         <Link to="/form">
-          <button className="form-btn">Add Entity</button>
+              <button className="form-btn">Add Entity</button>
         </Link>
+
+        
+
       </div>
+      
 
       <div className="container">
         {warriorData.map((warrior) => (
