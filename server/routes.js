@@ -146,7 +146,7 @@ router.post('/auth', async(req,res) => {
       "username" : username,
       "password" : password
   }
-  const ACCESS_TOKEN = jwt.sign(user,process.env.ACCESS_TOKEN)
+  const ACCESS_TOKEN = jwt.sign(user, process.env.ACCESS_TOKEN, { expiresIn: '1d' });
   res.cookie('token',ACCESS_TOKEN,{maxAge:365*24*60*60*100})
   // res.json({"accessToken" : ACCESS_TOKEN})
   res.json({ "accessToken": ACCESS_TOKEN });
