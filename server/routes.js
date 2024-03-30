@@ -4,6 +4,7 @@ const  war = require('./schema');
 const Joi = require("joi");
 const person = require('./Usersschema')
 const jwt = require('jsonwebtoken')
+
 require('dotenv').config()
 
 router.use(express.json()) 
@@ -14,7 +15,8 @@ const newSchema = Joi.object({
   DeathYear: Joi.number().required(),
   State: Joi.string().required(),
   FamousBattle: Joi.string().required(),
-  Image: Joi.string().required()
+  Image: Joi.string().required(),
+  created_by: Joi.string()
 });
 
 
@@ -52,7 +54,7 @@ router.post('/add', async (req, res) => {
   try {
       const { error } = newSchema.validate(req.body);
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            return res  .status(400).json({ error: error.details[0].message });
         }
       const newData = war.create(req.body);
       res.send(" successful");
