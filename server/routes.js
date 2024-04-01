@@ -5,7 +5,7 @@ const Joi = require("joi");
 const person = require('./Usersschema')
 const jwt = require('jsonwebtoken')
 
-require('dotenv').config()
+require('dotenv').config()                             
 
 router.use(express.json()) 
 
