@@ -61,7 +61,8 @@ router.post('/add', async (req, res) => {
       res.send(newData);
   } catch (error) {
       console.error(error);
-      res.send('Error');  
+      console.log('error',error)
+      // res.send('Error');  
   }
 });
 

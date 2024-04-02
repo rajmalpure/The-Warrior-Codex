@@ -1,124 +1,120 @@
-import React from 'react'
-import "./Form.css"
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Form() {
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
-    
     const [formData, setFormData] = useState({
-        Warrior : "",
-        BirthYear : "",
-        DeathYear : "",
-        State : "",
-        FamousBattle : "",
-        Image : ""
-      });
+        Warrior: "",
+        BirthYear: "",
+        DeathYear: "",
+        State: "",
+        FamousBattle: "",
+        Image: "",
+        created_by: sessionStorage.getItem('username')
+    });
 
-      
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-      const handleSubmit = async (event) => {
-        console.log("working")
-        event.preventDefault(); 
-    
-        const res = await axios.post('https://list-of-warrriors.onrender.com/add', formData)
-            .then(res => {
-                console.log(res)
-                navigate('/')
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        try {
+            const res = await axios.post('https://list-of-warrriors.onrender.com/add', formData);
+            console.log(res.data); // Log the response data if needed
+            navigate('/');
+        } catch (error) {
+            // console.error("Error:", error.message);
+            console.log('error',error)
+            // Add additional error handling as needed
+        }
     };
-    
-      const handleChange = (event) => {
+
+    const handleChange = (event) => {
         const { name, value, type, checked } = event.target;
         const newValue = type === 'checkbox' ? checked : value;
         setFormData((prevInfo) => ({
-          ...prevInfo,
-          [name]: newValue,
+            ...prevInfo,
+            [name]: newValue,
         }));
-      };
+    };
 
-  return (
-    <div className='container'>
-    <div className='content'>
-        <form>
-            <label> 
-                Warrior :
-                <br /> 
-                <input
-                type='text'
-                name='Warrior'
-                onChange={handleChange}
-                />
-            </label>
-            <br />
-            <label>
-                Birth Year :
-                <br />
-                <input
-                type='Number'
-                name='BirthYear'
-                onChange={handleChange}
-                />
-            </label>
-            <br />
-
-            <label>
-                Death Year :
-                <br />
-                <input
-                type='Number'
-                name='DeathYear'
-                onChange={handleChange}
-                />
-            </label>
-            <br />
-
-            <label>
-                State : 
-                <br />
-                <input
-                type='text'
-                name='State'
-                onChange={handleChange}
-                />
-            </label>
-            <br />
-            <label>
-            Famous Battle :
-                <br /> 
-                <input
-                type='text'
-                name='FamousBattle'
-                onChange={handleChange}
-                />
-            </label>
-            <br />
-
-            <label>
-                Image : 
-                <br />
-                <input
-                type='text'
-                name='Image'
-                onChange={handleChange}
-                />
-            </label>
-            <br/>
-
-            <button className='submit' onClick={()=> handleSubmit(event)}>
-                Submit
-            </button>
-        </form>
-    </div>
-    </div>
-  )
+    return (
+        <div className='container'>
+            <div className='content'>
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Warrior :
+                        <br />
+                        <input
+                            type='text'
+                            name='Warrior'
+                            value={formData.Warrior}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Birth Year :
+                        <br />
+                        <input
+                            type='number'
+                            name='BirthYear'
+                            value={formData.BirthYear}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Death Year :
+                        <br />
+                        <input
+                            type='number'
+                            name='DeathYear'
+                            value={formData.DeathYear}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        State :
+                        <br />
+                        <input
+                            type='text'
+                            name='State'
+                            value={formData.State}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Famous Battle :
+                        <br />
+                        <input
+                            type='text'
+                            name='FamousBattle'
+                            value={formData.FamousBattle}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        Image :
+                        <br />
+                        <input
+                            type='text'
+                            name='Image'
+                            value={formData.Image}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <br />
+                    <button type='submit' className='submit' onSubmit={handleSubmit}>
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    );
 }
 
-
 export default Form;
-
