@@ -9,16 +9,6 @@ require('dotenv').config()
 
 router.use(express.json()) 
 
-// Defined CRUD routes and handlers
-router.get('/get', async (req, res) => {
-  try {
-      const sword = await war.find(); 
-      res.json(sword); 
-  } catch (err) {
-      console.error('Error in GET request:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
 
 const newSchema = Joi.object({
   Warrior: Joi.string().required(),
@@ -29,6 +19,7 @@ const newSchema = Joi.object({
   Image: Joi.string().required(),
   created_by: Joi.string()
 });
+
 
 
 
@@ -62,7 +53,7 @@ router.put('/update/:id', async (req, res) => {
         if (error) {
             return res.status(400).json({ error: error.details[0].message });
       }
-      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, { add: true });
+      const updatedData = await war.findByIdAndUpdate(req.params.id, req.body, );
       if (!updatedData) {
           return res.status(404).json({ error: 'Data not found' });
       }
