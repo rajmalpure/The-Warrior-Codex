@@ -12,4 +12,4 @@ const warrior = new mongoose.Schema({
 
 const war = mongoose.model('warriors-collections', warrior)
 
-module.exports = war
+module.exports = {war}
