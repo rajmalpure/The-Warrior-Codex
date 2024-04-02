@@ -7,7 +7,7 @@ const warrior = new mongoose.Schema({
         State : String,
         FamousBattle : String,
         Image : String,
-        created_by: String
+      
 })
 
 const war = mongoose.model('warriors-collections', warrior)
