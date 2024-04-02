@@ -20,12 +20,11 @@ function Form() {
 
         try {
             const res = await axios.post('https://list-of-warrriors.onrender.com/add', formData);
-            console.log(res.data); // Log the response data if needed
+            console.log(res.data); 
             navigate('/');
         } catch (error) {
-            // console.error("Error:", error.message);
+
             console.log('error',error)
-            // Add additional error handling as needed
         }
     };
 

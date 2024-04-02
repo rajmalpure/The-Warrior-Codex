@@ -73,10 +73,7 @@ function Home() {
         </div>
         {error && <p className="error-message">{error}</p>}
         <h1>LIST OF WARRIORS</h1>
-        <input className="search-bar" type="text" placeholder="  Enter the warrior name" />
-        <Link to="/form">
-          <button className="form-btn">Add Entity</button>
-        </Link>
+
         {isLoggedIn && (
           <div className="filter">
             <select value={selectedUser} onChange={e => setSelectedUser(e.target.value)}>
@@ -86,6 +83,11 @@ function Home() {
             </select>
           </div>
         )}
+        
+        <Link to="/form">
+          <button className="form-btn">Add Entity</button>
+        </Link>
+      
       </div>
       <div className="container">
         {filteredEntries.map((warrior) => (

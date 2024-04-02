@@ -9,7 +9,7 @@ require('dotenv').config()
 
 router.use(express.json()) 
 
-// Define CRUD routes and handlers
+// Defined CRUD routes and handlers
 router.get('/get', async (req, res) => {
   try {
       const sword = await war.find(); 
@@ -30,23 +30,6 @@ const newSchema = Joi.object({
   created_by: Joi.string()
 });
 
-
-
-
-// router.post('/post', (req, res) => {
-//     res.send("Create");
-//   // Handler for POST method (Create)
-// });
-
-// router.put('/put', (req, res) => {
-//     res.send("Update");
-//   // Handler for PUT method (Update)
-// });
-
-// router.delete('/delete', (req, res) => {
-//     res.send("Delete");
-//   // Handler for DELETE method (Delete)
-// });
 
 
 router.post('/add', async (req, res) => {
