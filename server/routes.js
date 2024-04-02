@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const  war = require('./schema');
+const  {war} = require('./schema');
 const Joi = require("joi");
 const person = require('./Usersschema')
 const jwt = require('jsonwebtoken')
@@ -56,8 +56,9 @@ router.post('/add', async (req, res) => {
         if (error) {
             return res  .status(400).json({ error: error.details[0].message });
         }
-      const newData = war.create(req.body);
-      res.send(" successful");
+      const newData = await war.create(req.body);
+      console.log(newData)
+      res.send(newData);
   } catch (error) {
       console.error(error);
       res.send('Error');  
