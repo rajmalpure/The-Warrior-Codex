@@ -9,6 +9,7 @@ require('dotenv').config()
 
 router.use(express.json()) 
 
+
 const newSchema = Joi.object({
   Warrior: Joi.string().required(),
   BirthYear: Joi.number().required(),
@@ -20,33 +21,6 @@ const newSchema = Joi.object({
 });
 
 
-
-
-// Define CRUD routes and handlers
-router.get('/get', async (req, res) => {
-  try {
-      const sword = await war.find(); 
-      res.json(sword); 
-  } catch (err) {
-      console.error('Error in GET request:', err);
-      res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
-// router.post('/post', (req, res) => {
-//     res.send("Create");
-//   // Handler for POST method (Create)
-// });
-
-// router.put('/put', (req, res) => {
-//     res.send("Update");
-//   // Handler for PUT method (Update)
-// });
-
-// router.delete('/delete', (req, res) => {
-//     res.send("Delete");
-//   // Handler for DELETE method (Delete)
-// });
 
 
 router.post('/add', async (req, res) => {
@@ -61,7 +35,8 @@ router.post('/add', async (req, res) => {
       res.send(newData);
   } catch (error) {
       console.error(error);
-      res.send('Error');  
+      console.log('error',error)
+      // res.send('Error');  
   }
 });
 

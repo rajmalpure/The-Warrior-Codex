@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import './Signup.css';
 
+
 function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -21,6 +22,7 @@ function Signup() {
       if (response.status === 200) {
         sessionStorage.setItem('login', true);
         sessionStorage.setItem('signupSuccess', 'Signup successful'); 
+        sessionStorage.setItem('username',username);
         navigate("/");
       } else {
         setSignupError('Signup failed');
