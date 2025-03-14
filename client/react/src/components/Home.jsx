@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Home.css";
+import "../index.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -72,7 +72,7 @@ function Home() {
           )}
         </div>
         {error && <p className="error-message">{error}</p>}
-        <h1>LIST OF WARRIORS</h1>
+        <h1>The Warrior Codex</h1>
 
         {isLoggedIn && (
           <div className="filter">
@@ -83,36 +83,41 @@ function Home() {
             </select>
           </div>
         )}
-        
+
         <Link to="/form">
           <button className="form-btn">Add Entity</button>
         </Link>
-      
+
       </div>
       <div className="container">
-        {filteredEntries.map((warrior) => (
-          <div key={warrior._id} className="card">
-            <div className="image">
-              <img src={warrior.Image} alt="" />
-            </div>
-            <div className="info">
-              <h2><strong className="f">{warrior.Warrior}</strong></h2>
-              <ul>
-                <li>Birth year: {warrior.BirthYear}</li>
-                <li>Death year: {warrior.DeathYear}</li>
-                <li>State: {warrior.State}</li>
-                <li>Famous battle: {warrior.FamousBattle}</li>
-              </ul>
-              <div className="btns">
-                <Link to={`/update/${warrior._id}`}>
-                  <button className="update">Update</button>
-                </Link>
-                <button className="delete" onClick={() => deleteItem(warrior._id)}>Delete</button>
+        {filteredEntries.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          filteredEntries.map((warrior) => (
+            <div key={warrior._id} className="card">
+              <div className="image">
+                <img src={warrior.Image} alt="" />
+              </div>
+              <div className="info">
+                <h2><strong className="f">{warrior.Warrior}</strong></h2>
+                <ul>
+                  <li>Birth year: {warrior.BirthYear}</li>
+                  <li>Death year: {warrior.DeathYear}</li>
+                  <li>State: {warrior.State}</li>
+                  <li>Famous battle: {warrior.FamousBattle}</li>
+                </ul>
+                <div className="btns">
+                  <Link to={`/update/${warrior._id}`}>
+                    <button className="update">Update</button>
+                  </Link>
+                  <button className="delete" onClick={() => deleteItem(warrior._id)}>Delete</button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
+
     </div>
   );
 }

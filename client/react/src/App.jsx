@@ -1,5 +1,5 @@
 import Home from './components/Home'
-import './App.css'
+import './index.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Form from "./components/Form"
 import UpdateForm from './components/UpdateForm'

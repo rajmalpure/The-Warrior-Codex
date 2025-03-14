@@ -1,44 +1,91 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://source.unsplash.com/1600x900/?warrior,battle') center/cover no-repeat;
+  animation: fadeIn 1s ease-in-out;
+  padding: 20px;
+}
+
+.content {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  background: white;
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.update {
+  background: linear-gradient(to right, #b8860b, #ffcc00);
+  color: black;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.update:hover {
+  background: linear-gradient(to right, #ffcc00, #b8860b);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.update:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 500px) {
   .content {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 1.5rem;
   }
-  
-  label {
-    margin-bottom: 10px;
-    display: block;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-  }
-  
-  button.submit {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button.submit:hover {
-    background-color: #0056b3;
-  }
-  
-  
+}
